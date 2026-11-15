@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sleek Design Agency — Mohamed Ali Saadi</title>
+  <meta name="description" content="Design d’emballage, de produit, d’identité et de web par Mohamed Ali Saadi, Laval (Québec).">
+  <meta name="theme-color" content="#111214">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site">
+    <div class="wrap bar">
+      <a class="mark" href="#top" aria-label="Sleek Design Agency">
+        <img class="logo" src="images/logo.svg" alt="" width="369" height="96">
+      </a>
+      <nav class="main" aria-label="Main">
+        <a href="#work"><span lang="fr">Projets</span><span lang="en">Work</span></a>
+        <a href="#services">Services</a>
+        <a href="#about"><span lang="fr">À propos</span><span lang="en">About</span></a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="lang" type="button" data-active="fr" aria-label="Switch to English">
+        <span data-lang="fr">FR</span>
+        <span data-lang="en">EN</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="hero-meta"><span lang="fr">Studio de design, Laval (Québec)</span><span lang="en">Design studio, Laval, Quebec</span></p>
+          <h1><span lang="fr">Du concept jusqu’à l’objet fabriqué.</span><span lang="en">From concept to the built object.</span></h1>
+          <p class="lede"><span lang="fr">Design d’emballage, de produit, d’identité et de web, pensé dès le départ pour être produit.</span><span lang="en">Packaging, product, brand and web design, planned from day one to be produced.</span></p>
+          <div class="actions">
+            <a class="btn gold" href="#work"><span lang="fr">Voir les projets</span><span lang="en">See the work</span></a>
+            <a class="btn line" href="#contact"><span lang="fr">Démarrer un projet</span><span lang="en">Start a project</span></a>
+          </div>
+        </div>
+
+        <figure class="hero-drawing">
+          <svg class="dieline" viewBox="12 20 398 330" role="img" aria-labelledby="dl-title">
+            <title id="dl-title">Gabarit de découpe d’une boîte pliante / Dieline of a folding carton</title>
+            <!-- outline of a tuck-end carton: one continuous cut path -->
+            <path class="cut" pathLength="1" d="
+              M40 115 L22 125 L22 255 L40 265
+              L40 115
+              L40 60 Q40 40 60 40 L72 40 L76 30 L124 30 L128 40 L140 40 Q160 40 160 60 L160 115
+              L164 85 Q168 80 180 80 L200 80 Q212 80 216 85 L220 115
+              L340 115 L344 85 Q348 80 360 80 L380 80 Q392 80 396 85 L400 115
+              L400 265
+              L396 295 Q392 300 380 300 L360 300 Q348 300 344 295 L340 265
+              L340 310 Q340 330 320 330 L308 330 L304 340 L256 340 L252 330 L240 330 Q220 330 220 310 L220 265
+              L216 295 Q212 300 200 300 L180 300 Q168 300 164 295 L160 265
+              L40 265"/>
+            <!-- fold lines -->
+            <path class="fold" d="M40 115 H400 M40 265 H400 M160 115 V265 M220 115 V265 M340 115 V265 M40 60 H160 M220 310 H340"/>
+            <!-- panel labels: the group fades in once, so switching language later shows the other labels instantly -->
+            <g class="labels">
+              <text class="panel" x="100" y="195" text-anchor="middle" lang="fr">face</text>
+              <text class="panel" x="100" y="195" text-anchor="middle" lang="en">front</text>
+              <text class="panel" x="280" y="195" text-anchor="middle" lang="fr">dos</text>
+              <text class="panel" x="280" y="195" text-anchor="middle" lang="en">back</text>
+              <text class="panel" x="190" y="195" text-anchor="middle" lang="fr">côté</text>
+              <text class="panel" x="190" y="195" text-anchor="middle" lang="en">side</text>
+              <text class="panel" x="370" y="195" text-anchor="middle" lang="fr">côté</text>
+              <text class="panel" x="370" y="195" text-anchor="middle" lang="en">side</text>
+            </g>
+          </svg>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ FOLD: scroll-driven, the dieline assembles into a box ============ -->
+    <section class="fold" id="fold">
+      <div class="fold-sticky">
+        <div class="wrap fold-grid">
+          <div class="fold-copy">
+            <h2><span lang="fr">Un fichier à plat. Un objet qui tient debout.</span><span lang="en">A flat file. An object that stands up.</span></h2>
+            <p><span lang="fr">Chaque gabarit que je livre est vérifié comme objet construit, pas seulement comme image à l’écran.</span><span lang="en">Every dieline I deliver is checked as a built object, not just as an image on screen.</span></p>
+            <ol class="fold-steps">
+              <li data-step="0"><span lang="fr">Gabarit</span><span lang="en">Dieline</span></li>
+              <li data-step="1"><span lang="fr">Pliage</span><span lang="en">Folding</span></li>
+              <li data-step="2"><span lang="fr">Assemblé</span><span lang="en">Assembled</span></li>
+            </ol>
+          </div>
+          <div class="fold-stage" id="fold-stage" aria-hidden="true">
+            <!-- Nested panels: each child is hinged on its parent's edge, so folds add up like real cardboard -->
+            <div class="rig" id="rig">
+              <div class="pnl front">
+                <svg class="brandmark" viewBox="0 0 276 337" aria-hidden="true"><path d="M16 0H276V44H44V195H178V239H16Q0 239 0 223V16Q0 0 16 0ZM97 98H260Q276 98 276 114V321Q276 337 260 337H0V293H232V142H97Z"/></svg>
+                <div class="pnl glue"></div>
+                <div class="pnl lid">
+                  <div class="pnl tuck"></div>
+                </div>
+                <div class="pnl side s1">
+                  <div class="pnl dust"></div>
+                  <div class="pnl back">
+                    <div class="pnl bottom"></div>
+                    <div class="pnl side s2">
+                      <div class="pnl dust"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="block" id="work">
+      <div class="wrap">
+        <div class="head">
+          <h2><span lang="fr">Projets choisis</span><span lang="en">Selected work</span></h2>
+          <p><span lang="fr">Chaque projet couvre la démarche complète : recherche, itérations, dessins techniques et résultat final. Filtrez selon ce qui vous intéresse.</span><span lang="en">Each project shows the full process: research, iterations, technical drawings and the final result. Filter by what you’re looking for.</span></p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter" id="filters">
+          <button type="button" data-cat="all" aria-pressed="true"><span lang="fr">Tout</span><span lang="en">All</span></button>
+          <button type="button" data-cat="packaging" aria-pressed="false"><span lang="fr">Emballage</span><span lang="en">Packaging</span></button>
+          <button type="button" data-cat="product" aria-pressed="false"><span lang="fr">Produit</span><span lang="en">Product</span></button>
+          <button type="button" data-cat="brand" aria-pressed="false"><span lang="fr">Identité et graphisme</span><span lang="en">Brand &amp; graphic</span></button>
+        </div>
+        <div class="cards" id="grid">
+          <!-- One card per project. The first card is shown large. To add a project: copy a card, change the link, image, title and tags. -->
+          <a class="card" href="projects/nordalys.html" data-cats="packaging">
+            <div class="card-img crop">
+              <div class="card-clip">
+                <img src="images/nordalys-hero.jpg" alt="Nordalys" loading="lazy">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>Nordalys</h3>
+              <div class="tags"><span><span lang="fr">Emballage</span><span lang="en">Packaging</span></span><span>2026</span></div>
+            </div>
+          </a>
+          <a class="card" href="projects/bead-lamp.html" data-cats="product">
+            <div class="card-img crop">
+              <div class="card-clip">
+                <img src="images/bead-lamp-01.jpg" alt="Bead Lamp" loading="lazy" style="object-position:50% 70%">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>Bead Lamp</h3>
+              <div class="tags"><span><span lang="fr">Produit</span><span lang="en">Product</span></span></div>
+            </div>
+          </a>
+          <a class="card" href="projects/solvtk.html" data-cats="brand">
+            <div class="card-img crop">
+              <div class="card-clip">
+                <img src="images/solvtk-01.jpg" alt="SOLVTK" loading="lazy" style="object-position:100% 50%">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>SOLVTK</h3>
+              <div class="tags"><span><span lang="fr">Identité et graphisme</span><span lang="en">Brand &amp; graphic</span></span></div>
+            </div>
+          </a>
+          <a class="card" href="projects/nodo.html" data-cats="product">
+            <div class="card-img crop">
+              <div class="card-clip">
+                <img src="images/nodo-01.jpg" alt="NODO" loading="lazy" style="object-position:50% 45%">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>NODO</h3>
+              <div class="tags"><span><span lang="fr">Produit</span><span lang="en">Product</span></span></div>
+            </div>
+          </a>
+          <a class="card" href="projects/tron.html" data-cats="packaging">
+            <div class="card-img crop">
+              <div class="card-clip">
+                <img src="images/tron-01.jpg" alt="Sleek Bricks × TRON" loading="lazy">
+              </div>
+            </div>
+            <div class="card-text">
+              <h3>Sleek Bricks × TRON</h3>
+              <div class="tags"><span><span lang="fr">Emballage</span><span lang="en">Packaging</span></span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="block" id="services">
+      <div class="wrap">
+        <div class="head">
+          <h2>Services</h2>
+          <p><span lang="fr">Une seule personne du premier croquis aux fichiers d’impression ou de fabrication. Moins d’intermédiaires, moins de surprises en production.</span><span lang="en">One person from first sketch to print or fabrication files. Fewer handoffs, fewer surprises in production.</span></p>
+        </div>
+        <div class="services">
+          <article class="service">
+            <h3><span lang="fr">Emballage et étiquettes</span><span lang="en">Packaging and labels</span></h3>
+            <div>
+              <p><span lang="fr">Gammes complètes, déclinaisons par parfum ou format, gabarits de découpe et fichiers prêts pour l’imprimeur.</span><span lang="en">Full product ranges, scent or size variations, dielines and printer-ready files.</span></p>
+              <ul>
+                <li><span lang="fr">Étiquettes</span><span lang="en">Labels</span></li>
+                <li><span lang="fr">Boîtes</span><span lang="en">Boxes</span></li>
+                <li><span lang="fr">Gabarits</span><span lang="en">Dielines</span></li>
+                <li><span lang="fr">Maquettes 3D</span><span lang="en">3D mockups</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="service">
+            <h3><span lang="fr">Identité de marque</span><span lang="en">Brand identity</span></h3>
+            <div>
+              <p><span lang="fr">Logo, typographie, couleurs et règles d’usage, conçus pour fonctionner sur un écran comme sur un produit.</span><span lang="en">Logo, type, color and usage rules, built to work on a screen and on a product.</span></p>
+              <ul>
+                <li>Logo</li>
+                <li><span lang="fr">Guide de marque</span><span lang="en">Brand guide</span></li>
+                <li><span lang="fr">Papeterie</span><span lang="en">Stationery</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="service">
+            <h3><span lang="fr">Mobilier et fabrication</span><span lang="en">Furniture and fabrication</span></h3>
+            <div>
+              <p><span lang="fr">Conception de mobilier, plans de fabrication et suivi de production, avec une expérience directe en atelier CNC.</span><span lang="en">Furniture design, fabrication drawings and production oversight, backed by hands-on CNC shop experience.</span></p>
+              <ul>
+                <li><span lang="fr">Dessins techniques</span><span lang="en">Technical drawings</span></li>
+                <li><span lang="fr">Optimisation des coûts</span><span lang="en">Cost optimization</span></li>
+                <li><span lang="fr">Suivi de production</span><span lang="en">Production oversight</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="service">
+            <h3><span lang="fr">Design web</span><span lang="en">Web design</span></h3>
+            <div>
+              <p><span lang="fr">Sites vitrines rapides et sur mesure, codés à la main en HTML, CSS et JavaScript, sans gabarit générique.</span><span lang="en">Fast, custom showcase sites, hand-coded in HTML, CSS and JavaScript, no generic templates.</span></p>
+              <ul>
+                <li><span lang="fr">Sites vitrines</span><span lang="en">Showcase sites</span></li>
+                <li><span lang="fr">Bilingue</span><span lang="en">Bilingual</span></li>
+                <li><span lang="fr">Intégration</span><span lang="en">Front-end build</span></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="process-title"><span lang="fr">Comment se déroule un mandat</span><span lang="en">How a project runs</span></h3>
+        <ol class="process">
+          <li>
+            <h4><span lang="fr">Cadrage</span><span lang="en">Scope</span></h4>
+            <p><span lang="fr">On définit ensemble la portée, l’échéancier et les livrables, par écrit.</span><span lang="en">We agree on scope, timeline and deliverables, in writing.</span></p>
+          </li>
+          <li>
+            <h4>Concepts</h4>
+            <p><span lang="fr">Deux ou trois pistes visuelles, présentées en contexte réel.</span><span lang="en">Two or three visual directions, shown in real context.</span></p>
+          </li>
+          <li>
+            <h4><span lang="fr">Raffinement</span><span lang="en">Refinement</span></h4>
+            <p><span lang="fr">La piste retenue est développée et ajustée selon vos retours.</span><span lang="en">The chosen direction is developed and adjusted with your feedback.</span></p>
+          </li>
+          <li>
+            <h4><span lang="fr">Fichiers finaux</span><span lang="en">Final files</span></h4>
+            <p><span lang="fr">Fichiers prêts pour l’impression, la fabrication ou la mise en ligne.</span><span lang="en">Files ready for print, fabrication or launch.</span></p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="block" id="about">
+      <div class="wrap about">
+        <div class="portrait crop">
+          <img src="images/portrait.jpg" alt="Mohamed Ali Saadi" loading="lazy">
+        </div>
+        <div>
+          <h2>Mohamed Ali Saadi</h2>
+          <p class="statement"><span lang="fr">Je suis un designer multidisciplinaire, actif en UI/UX, en identité de marque, en design de produit et en design expérientiel. Je crée des expériences visuelles et interactives cohérentes, entre le physique et le numérique, en alliant pensée systémique, narration et design centré sur l’utilisateur.</span><span lang="en">I’m a multidisciplinary designer working across UI/UX, branding, product and experiential design. I create cohesive visual and interactive experiences across physical and digital media, combining systems thinking, storytelling and user-centered design.</span></p>
+          <dl class="facts">
+            <div>
+              <dt><span lang="fr">Formation</span><span lang="en">Education</span></dt>
+              <dd><span lang="fr">BFA Design, Université Concordia (2026)</span><span lang="en">BFA Design, Concordia University (2026)</span></dd>
+            </div>
+            <div>
+              <dt><span lang="fr">Échanges</span><span lang="en">Exchanges</span></dt>
+              <dd>NABA Milan, Keio University Tokyo</dd>
+            </div>
+            <div>
+              <dt><span lang="fr">Expérience</span><span lang="en">Experience</span></dt>
+              <dd><span lang="fr">Coordination de production et fabrication CNC, Veneziano Woodworks</span><span lang="en">Production coordination and CNC fabrication, Veneziano Woodworks</span></dd>
+            </div>
+            <div>
+              <dt>Fabrication</dt>
+              <dd><span lang="fr">CNC, électronique, impression 3D, métal, dessin technique</span><span lang="en">CNC, electronics, 3D printing, metalwork, technical drawing</span></dd>
+            </div>
+            <div>
+              <dt><span lang="fr">Langues</span><span lang="en">Languages</span></dt>
+              <dd><span lang="fr">Français, anglais</span><span lang="en">French, English</span></dd>
+            </div>
+            <div>
+              <dt><span lang="fr">Basé à</span><span lang="en">Based in</span></dt>
+              <dd>Laval, Québec</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="block contact" id="contact">
+      <div class="wrap">
+        <h2><span lang="fr">Une idée à concrétiser&#8239;?</span><span lang="en">An idea ready to become real?</span></h2>
+        <p><span lang="fr">Décrivez-moi le produit, l’échéance et ce que vous avez déjà. Je réponds en général sous deux jours ouvrables.</span><span lang="en">Tell me about the product, the deadline and what you already have. I usually reply within two business days.</span></p>
+        <a class="email" id="email" href="mailto:sleekagency1618@gmail.com">sleekagency1618@gmail.com</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© <span id="year"></span> Sleek Design Agency</span>
+      <span><a href="https://www.linkedin.com/in/mohamed-ali-saadi-84273a299" target="_blank" rel="noopener">LinkedIn</a> <a href="https://vite-tea.itch.io/thehouse" target="_blank" rel="noopener">itch.io</a></span>
+    </div>
+  </footer>
+
+
+</body>
+</html>

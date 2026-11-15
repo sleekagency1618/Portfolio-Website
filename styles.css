@@ -1,0 +1,1201 @@
+/* =====================================================================
+   SLEEK DESIGN AGENCY
+   Palette: black, white, gold. Dark only.
+   ===================================================================== */
+
+/* ============ TOKENS ============ */
+:root{
+  --paper:#111214;              /* logo black */
+  --paper-2:#121212;            /* recessed surface: frames, placeholders */
+  --ink:#EFEFF4;                /* logo white */
+  --ink-soft:#A3A3A3;           /* secondary text */
+  --ink-faint:#6E6E6E;          /* fold lines, quiet labels */
+  --gold:#D8A62A;               /* logo gold */
+  --gold-line:rgba(216,166,42,.7);
+  --gold-wash:rgba(216,166,42,.05);
+  --rule:rgba(255,255,255,.12);
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --ease:cubic-bezier(.6,.05,.3,1);
+  --measure:62ch;
+  --gutter:clamp(1.25rem, 4vw, 3rem);
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{
+  box-sizing:inherit
+}
+html{
+  /* the whole layout is sized in rem. Up to a 1440px-wide window, 1rem = 16px (browser default);
+     on wider screens it grows gently with the window (about half as fast), so the page scales up
+     as a whole without looking zoomed in: ~18px at 1920, ~20.5px at 2560, ~26px at 3840.
+     To make it grow more or less, change .4167vw and keep 10px + that = 16px at 1440 */
+  font-size:max(100%, calc(10px + .4167vw));
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px));
+  /* faint overhead light so the black has depth instead of being flat,
+     over a tiled line pattern (images/pattern.svg: its fill-opacity sets how visible it is) */
+  background:
+    radial-gradient(120% 70% at 70% -10%, rgba(255,255,255,.045), transparent 60%),
+    url("images/pattern.svg") 0 0 / 32.5rem 32.5rem repeat,
+    var(--paper);
+  background-attachment:fixed;
+}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:clamp(1.05rem, .98rem + .3vw, 1.2rem);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased
+}
+
+
+
+/* ============ TEXTURE: fine grain over everything ============ */
+body::after{
+  content:"";
+  position:fixed;
+  inset:-50%;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.09;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+img{
+  max-width:100%;
+  display:block
+}
+
+/* ============ LANGUAGE ============
+   Every text exists twice in the HTML (lang="fr" and lang="en").
+   The toggle switches <html lang>, and this rule hides the other language. */
+html[lang="fr"] [lang="en"], html[lang="en"] [lang="fr"]{
+  display:none !important
+}
+a{
+  color:inherit
+}
+:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px
+}
+.wrap{
+  max-width:77.5rem;
+  margin:0 auto;
+  padding:0 var(--gutter)
+}
+
+/* printer's crop marks around image frames */
+.crop{
+  position:relative
+}
+.crop::before{
+  content:"";
+  position:absolute;
+  inset:-12px;
+  pointer-events:none;
+  z-index:2;
+  --m:var(--gold-line);
+  background:
+    linear-gradient(var(--m),var(--m)) 12px 0 / 1px 7px no-repeat,
+    linear-gradient(var(--m),var(--m)) 0 12px / 7px 1px no-repeat,
+    linear-gradient(var(--m),var(--m)) calc(100% - 12px) 0 / 1px 7px no-repeat,
+    linear-gradient(var(--m),var(--m)) 100% 12px / 7px 1px no-repeat,
+    linear-gradient(var(--m),var(--m)) 12px 100% / 1px 7px no-repeat,
+    linear-gradient(var(--m),var(--m)) 0 calc(100% - 12px) / 7px 1px no-repeat,
+    linear-gradient(var(--m),var(--m)) calc(100% - 12px) 100% / 1px 7px no-repeat,
+    linear-gradient(var(--m),var(--m)) 100% calc(100% - 12px) / 7px 1px no-repeat;
+}
+.ph{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  background:var(--paper-2);
+  font-family:var(--sans);
+  font-size:.78rem;
+  color:var(--ink-faint);
+  background-image:linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size:28px 28px
+}
+.ph > span{
+  background:var(--paper-2);
+  padding:.3rem .6rem
+}
+
+/* ============ HEADER ============ */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);
+  z-index:10;
+  background:rgba(17,18,20,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px)
+}
+header.site{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:9;
+  background:rgba(17,18,20,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule)
+}
+.bar{
+  display:flex;
+  align-items:center;
+  gap:2rem;
+  height:4.25rem
+}
+.mark{
+  display:flex;
+  align-items:center;
+  gap:.85rem;
+  text-decoration:none;
+  margin-right:auto
+}
+/* the logo is one file (images/logo.svg): replace that file to update it on every page */
+.logo{
+  display:block;
+  height:2.75rem;
+  width:auto
+}
+nav.main{
+  display:flex;
+  gap:1.75rem;
+  font-family:var(--sans);
+  font-size:.9rem
+}
+nav.main a{
+  text-decoration:none;
+  color:var(--ink-soft);
+  transition:color .2s
+}
+nav.main a:hover{
+  color:var(--ink)
+}
+@media (max-width:760px){
+  nav.main{
+    display:none
+  }
+}
+
+/* language toggle: one button, the gold pill slides between the two labels */
+.lang{
+  all:unset;
+  cursor:pointer;
+  font-family:var(--sans);
+  font-size:.82rem;
+  display:flex;
+  padding:2px;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  position:relative;
+  isolation:isolate;
+  -webkit-tap-highlight-color:transparent
+}
+.lang:hover{
+  border-color:var(--gold-line)
+}
+.lang:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px
+}
+.lang::before{
+  content:"";
+  position:absolute;
+  top:2px;
+  bottom:2px;
+  left:2px;
+  width:calc(50% - 2px);
+  border-radius:999px;
+  background:var(--gold);
+  z-index:-1
+}
+.lang[data-active="en"]::before{
+  transform:translateX(100%)
+}
+.lang.ready::before{
+  transition:transform .35s var(--ease)
+}
+.lang span{
+  width:2.4rem;
+  text-align:center;
+  padding:.22rem 0;
+  color:var(--ink-soft);
+  transition:color .35s ease
+}
+.lang[data-active="fr"] span[data-lang="fr"],
+.lang[data-active="en"] span[data-lang="en"]{
+  color:#000;
+  font-weight:500
+}
+
+/* ============ HERO ============ */
+/* the hero fills the screen below the header and centres its content,
+   so the space above and below is always equal */
+.hero{
+  min-height:calc(100vh - 4.25rem - env(safe-area-inset-top,0px));
+  min-height:calc(100svh - 4.25rem - env(safe-area-inset-top,0px));
+  display:flex;
+  align-items:center;
+  padding:clamp(2.5rem,5vw,4rem) 0
+}
+.hero > .wrap{
+  width:100%
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center
+}
+.hero-meta{
+  font-family:var(--sans);
+  font-size:.85rem;
+  color:var(--gold);
+  margin:0 0 1.5rem
+}
+.hero h1{
+  font-weight:300;
+  font-size:clamp(2.9rem, 1.6rem + 5.4vw, 6.2rem);
+  line-height:.98;
+  letter-spacing:-.03em;
+  margin:0 0 1.6rem;
+  font-variation-settings:"opsz" 72
+}
+.lede{
+  font-size:clamp(1.1rem,1rem + .4vw,1.35rem);
+  color:var(--ink-soft);
+  max-width:34ch;
+  margin:0 0 2.4rem
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.85rem;
+  font-family:var(--sans);
+  font-size:.95rem
+}
+.btn{
+  display:inline-block;
+  padding:.85rem 1.4rem;
+  border-radius:2px;
+  text-decoration:none;
+  border:1px solid transparent;
+  transition:background .25s, color .25s, border-color .25s
+}
+.btn.gold{
+  background:var(--gold);
+  color:#000;
+  font-weight:500
+}
+.btn.gold:hover{
+  background:var(--ink)
+}
+.btn.line{
+  border-color:var(--rule);
+  color:var(--ink)
+}
+.btn.line:hover{
+  border-color:var(--gold);
+  color:var(--gold)
+}
+.hero-drawing{
+  margin:0
+}
+@media (max-width:860px){
+  .hero-grid{
+    grid-template-columns:1fr
+  }
+  .hero-drawing{
+    max-width:520px
+  }
+}
+
+/* dieline: drawn once on load (pure CSS) */
+.dieline{
+  width:100%;
+  height:auto;
+  overflow:visible
+}
+.dieline .cut{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.3;
+  stroke-linejoin:round;
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  animation:draw 2.2s var(--ease) .2s forwards
+}
+.dieline .fold{
+  fill:none;
+  stroke:rgba(216,166,42,.45);
+  stroke-width:1;
+  stroke-dasharray:5 4;
+  opacity:0;
+  animation:fade .8s ease 1.9s forwards
+}
+.dieline text{
+  font-family:var(--sans);
+  font-size:9.5px;
+  fill:var(--gold)
+}
+.dieline text.panel{
+  fill:var(--ink-soft);
+  font-size:10px
+}
+/* the fade is on the group, not on each label: hidden labels (other language) never run
+   their own animation, so animating them separately made them wait again after a language switch */
+.dieline .labels{
+  opacity:0;
+  animation:fade .8s ease 2.1s forwards
+}
+@keyframes draw{
+  to{
+    stroke-dashoffset:0
+  }
+}
+@keyframes fade{
+  to{
+    opacity:1
+  }
+}
+
+/* ============ FOLD (scroll-driven box) ============ */
+.fold{
+  height:260vh;
+  position:relative
+}
+.fold-sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  height:100svh;
+  display:flex;
+  align-items:center;
+  overflow:hidden
+}
+.fold-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);
+  gap:clamp(1.5rem,4vw,4rem);
+  align-items:center;
+  width:100%
+}
+.fold-copy h2{
+  font-weight:330;
+  font-size:clamp(2rem,1.3rem + 2.6vw,3.4rem);
+  line-height:1.06;
+  letter-spacing:-.02em;
+  margin:0 0 1.25rem
+}
+.fold-copy p{
+  color:var(--ink-soft);
+  margin:0 0 2rem;
+  max-width:38ch
+}
+.fold-steps{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  gap:1.75rem;
+  font-family:var(--sans);
+  font-size:.9rem;
+  counter-reset:s
+}
+.fold-steps li{
+  counter-increment:s;
+  color:var(--ink-faint);
+  padding-top:.6rem;
+  border-top:1.5px solid var(--rule);
+  min-width:5.5rem;
+  transition:color .3s, border-color .3s
+}
+.fold-steps li::before{
+  content:counter(s);
+  display:block;
+  font-size:.75rem;
+  margin-bottom:.2rem
+}
+.fold-steps li.on{
+  color:var(--ink);
+  border-color:var(--gold)
+}
+.fold-steps li.on::before{
+  color:var(--gold)
+}
+.fold-stage{
+  position:relative;
+  height:min(35rem, 70vh);
+  perspective:1500px;
+  perspective-origin:50% 40%
+}
+
+/* the rig and panels; JS sets --a --g --d --l --t --b (degrees) and the rig transform */
+.rig{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform-style:preserve-3d;
+  --a:0;
+  --g:0;
+  --d:0;
+  --l:0;
+  --t:0;
+  --b:0
+}
+.pnl{
+  position:absolute;
+  transform-style:preserve-3d;
+  border:1.2px solid var(--gold-line);
+  background:var(--gold-wash)
+}
+.front{
+  left:0;
+  top:0;
+  width:160px;
+  height:200px;
+  display:grid;
+  place-items:center
+}
+.brandmark{
+  width:46px;
+  height:auto;
+  fill:var(--gold);
+  transform:translateZ(.1px)
+}
+.glue{
+  right:100%;
+  top:12px;
+  width:22px;
+  height:176px;
+  transform-origin:right center;
+  transform:rotateY(calc(var(--g) * -1deg));
+  border-radius:4px 0 0 4px
+}
+.lid{
+  left:-1px;
+  bottom:100%;
+  width:160px;
+  height:80px;
+  transform-origin:center bottom;
+  transform:rotateX(calc(var(--l) * 1deg));
+  border-radius:12px 12px 0 0
+}
+.tuck{
+  left:16px;
+  bottom:100%;
+  width:126px;
+  height:18px;
+  transform-origin:center bottom;
+  transform:rotateX(calc(var(--t) * 1deg));
+  border-radius:6px 6px 0 0
+}
+.side{
+  left:100%;
+  top:-1px;
+  width:80px;
+  height:200px;
+  transform-origin:left center;
+  transform:rotateY(calc(var(--a) * 1deg))
+}
+.back{
+  left:100%;
+  top:-1px;
+  width:160px;
+  height:200px;
+  transform-origin:left center;
+  transform:rotateY(calc(var(--a) * 1deg))
+}
+.dust{
+  left:-1px;
+  bottom:100%;
+  width:80px;
+  height:48px;
+  transform-origin:center bottom;
+  transform:rotateX(calc(var(--d) * 1deg));
+  border-radius:10px 10px 0 0
+}
+.bottom{
+  left:-1px;
+  top:100%;
+  width:160px;
+  height:80px;
+  transform-origin:center top;
+  transform:rotateX(calc(var(--b) * -1deg))
+}
+
+@media (max-width:860px){
+  .fold-grid{
+    grid-template-columns:1fr;
+    gap:.5rem
+  }
+  .fold-copy h2{
+    font-size:clamp(1.7rem,1.2rem + 2.6vw,2.4rem);
+    margin-bottom:.75rem
+  }
+  .fold-copy p{
+    margin-bottom:1.25rem;
+    font-size:1rem
+  }
+  .fold-stage{
+    height:52vh
+  }
+}
+
+/* ============ SECTIONS ============ */
+section.block{
+  padding:clamp(4rem,9vw,7rem) 0;
+  border-top:1px solid var(--rule)
+}
+.head{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  gap:2rem;
+  margin-bottom:clamp(2rem,4vw,3.5rem);
+  align-items:end
+}
+.head h2{
+  font-weight:330;
+  font-size:clamp(2.2rem,1.4rem + 2.8vw,3.8rem);
+  line-height:1.04;
+  letter-spacing:-.025em;
+  margin:0
+}
+.head p{
+  margin:0;
+  color:var(--ink-soft);
+  max-width:var(--measure)
+}
+@media (max-width:760px){
+  .head{
+    grid-template-columns:1fr
+  }
+}
+
+/* ============ WORK: thumbnail cards ============ */
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  font-family:var(--sans);
+  font-size:.88rem;
+  margin-bottom:1.5rem
+}
+.filters button{
+  all:unset;
+  cursor:pointer;
+  padding:.42rem .95rem;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  color:var(--ink-soft);
+  transition:color .2s, border-color .2s, background .2s
+}
+.filters button:hover{
+  color:var(--ink);
+  border-color:var(--ink-soft)
+}
+.filters button[aria-pressed="true"]{
+  background:var(--ink);
+  color:#000;
+  border-color:var(--ink)
+}
+.filters button:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px
+}
+
+/* 6-column grid: the first two cards take half the width each, the next three a third each (2 + 3).
+   When a filter is on, every card is the same size (a third). */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:clamp(2.25rem,4vw,3.25rem) clamp(1.75rem,3vw,2.5rem);
+  padding-top:.75rem
+}
+.card{
+  grid-column:span 2
+}
+.cards:not(.filtered) .card:nth-child(-n+2){
+  grid-column:span 3
+}
+.card{
+  display:block;
+  text-decoration:none;
+  color:inherit
+}
+.card[hidden]{
+  display:none
+}
+.card-img{
+  aspect-ratio:4 / 3;
+  background:var(--paper-2)
+}
+/* .card-clip keeps the hover zoom inside the frame, while the gold crop marks (.crop) stay outside it */
+.card-clip{
+  position:absolute;
+  inset:0;
+  overflow:hidden
+}
+.card-img{
+  position:relative
+}
+.card-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .7s var(--ease)
+}
+.card-text{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:1rem;
+  padding-top:1.1rem
+}
+.card h3{
+  font-weight:350;
+  font-size:clamp(1.35rem,1.1rem + .8vw,1.8rem);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  margin:0;
+  transition:color .25s
+}
+.card h3::after{
+  content:" ↗";
+  font-family:var(--sans);
+  font-size:.6em;
+  color:var(--gold);
+  opacity:0;
+  display:inline-block;
+  transform:translate(-4px,2px);
+  transition:opacity .25s, transform .3s var(--ease)
+}
+.card .tags{
+  font-family:var(--sans);
+  font-size:.78rem;
+  color:var(--ink-faint);
+  display:flex;
+  flex-wrap:wrap;
+  gap:.25rem .9rem;
+  justify-content:flex-end;
+  flex-shrink:0
+}
+.card:hover h3, .card:focus-visible h3{
+  color:var(--gold)
+}
+.card:hover h3::after, .card:focus-visible h3::after{
+  opacity:1;
+  transform:translate(0,0)
+}
+.card:hover .card-img img{
+  transform:scale(1.035)
+}
+.card:focus-visible{
+  outline:none
+}
+.card:focus-visible .card-img{
+  outline:2px solid var(--gold);
+  outline-offset:4px
+}
+@media (max-width:900px){
+  .cards{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .card, .cards:not(.filtered) .card:nth-child(-n+2){
+    grid-column:span 1
+  }
+}
+@media (max-width:600px){
+  .cards{
+    grid-template-columns:1fr
+  }
+}
+/* touch screens: always show the arrow */
+@media (hover:none){
+  .card h3::after{
+    opacity:1;
+    transform:none
+  }
+}
+
+/* ============ PROJECT PAGE ============ */
+.pj{
+  padding:clamp(2.5rem,6vw,5rem) 0 clamp(4rem,8vw,6rem)
+}
+.pj-back{
+  font-family:var(--sans);
+  font-size:.9rem;
+  color:var(--ink-soft);
+  text-decoration:none;
+  transition:color .2s
+}
+.pj-back:hover{
+  color:var(--gold)
+}
+.pj h1{
+  font-weight:300;
+  font-size:clamp(2.9rem, 1.6rem + 5.4vw, 6rem);
+  line-height:.98;
+  letter-spacing:-.03em;
+  margin:1.75rem 0 1.25rem;
+  font-variation-settings:"opsz" 72
+}
+.pj-lede{
+  font-size:clamp(1.15rem,1rem + .6vw,1.5rem);
+  color:var(--ink-soft);
+  max-width:42ch;
+  margin:0 0 2.5rem;
+  line-height:1.45
+}
+.pj-hero{
+  max-width:77.5rem;
+  margin:0 auto clamp(3rem,6vw,5rem);
+  padding:0 var(--gutter);
+  background:none
+}
+.pj-hero.crop::before{
+  inset:-12px calc(var(--gutter) - 12px)
+}
+.pj-hero img{
+  width:100%;
+  max-height:85vh;
+  object-fit:contain;
+  background:var(--paper-2)
+}
+.pj-hero:has(.ph){
+  aspect-ratio:16/9;
+  position:relative
+}
+.case-meta{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));
+  gap:1rem 2rem;
+  font-family:var(--sans);
+  font-size:.88rem;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:1rem 0;
+  margin:0 0 clamp(2.5rem,5vw,4rem)
+}
+.case-meta dt{
+  color:var(--ink-faint);
+  margin-bottom:.15rem
+}
+.case-meta dd{
+  margin:0
+}
+.case-body{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,2fr);
+  gap:1.5rem 2.5rem
+}
+.case-body h3{
+  font-weight:450;
+  font-size:1.2rem;
+  margin:0
+}
+.case-body p{
+  margin:0 0 .5rem;
+  max-width:var(--measure)
+}
+.case-body .todo{
+  color:var(--ink-soft);
+  font-style:italic
+}
+/* resource links: big cards placed right under the project details. The first one is the main action (gold). */
+.case-links{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr));
+  gap:1rem;
+  margin:0 0 clamp(2.5rem,5vw,4rem)
+}
+.case-links:empty{
+  display:none
+}
+.case-links a{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:.3rem;
+  padding:1.2rem 3.5rem 1.3rem 1.4rem;
+  border:1px solid var(--gold-line);
+  background:var(--gold-wash);
+  color:var(--ink);
+  text-decoration:none;
+  transition:background .25s, border-color .25s, color .25s
+}
+.case-links a::after{
+  content:"↗";
+  position:absolute;
+  right:1.3rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-family:var(--sans);
+  font-size:1.4rem;
+  color:var(--gold);
+  transition:transform .3s var(--ease)
+}
+.case-links small{
+  font-family:var(--sans);
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold)
+}
+.case-links strong{
+  font-weight:400;
+  font-size:clamp(1.2rem,1rem + .6vw,1.5rem);
+  line-height:1.2
+}
+.case-links a:hover{
+  background:rgba(216,166,42,.12);
+  border-color:var(--gold)
+}
+.case-links a:hover::after{
+  transform:translate(3px, calc(-50% - 3px))
+}
+.case-links a:first-child{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#000
+}
+.case-links a:first-child small, .case-links a:first-child::after{
+  color:#000
+}
+.case-links a:first-child small{
+  opacity:.65
+}
+.case-links a:first-child:hover{
+  background:var(--ink);
+  border-color:var(--ink)
+}
+.case-links a:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px
+}
+
+/* gallery: rows of equal height, widths follow each image's proportions, nothing is cropped */
+.gallery{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-top:clamp(3rem,6vw,4.5rem)
+}
+.gallery:empty{
+  display:none
+}
+.g-row{
+  display:flex;
+  gap:1rem;
+  justify-content:center
+}
+.g-item{
+  display:block;
+  min-width:0;
+  background:var(--paper-2);
+  overflow:hidden
+}
+.g-item img{
+  width:100%;
+  height:auto;
+  transition:transform .6s var(--ease)
+}
+.g-item:hover img{
+  transform:scale(1.02)
+}
+.g-item:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px
+}
+@media (max-width:700px){
+  .g-row{
+    flex-direction:column
+  }
+  .g-item{
+    flex:none !important;
+    max-width:none !important
+  }
+}
+
+/* previous / next project */
+.pj-next{
+  display:flex;
+  justify-content:space-between;
+  gap:2rem;
+  margin-top:clamp(4rem,8vw,6rem);
+  padding-top:2rem;
+  border-top:1px solid var(--rule)
+}
+.pj-next a{
+  text-decoration:none;
+  display:block;
+  max-width:48%
+}
+.pj-next small{
+  display:block;
+  font-family:var(--sans);
+  font-size:.8rem;
+  color:var(--ink-faint);
+  margin-bottom:.45rem
+}
+.pj-next strong{
+  display:block;
+  font-size:clamp(1.5rem,1.1rem + 1.6vw,2.6rem);
+  font-weight:350;
+  line-height:1.1;
+  letter-spacing:-.02em;
+  transition:color .25s
+}
+.pj-next strong{
+  font-weight:350
+}
+.pj-next a:hover strong{
+  color:var(--gold)
+}
+.pj-next .next{
+  text-align:right;
+  margin-left:auto
+}
+@media (max-width:680px){
+  .case-body{
+    grid-template-columns:1fr
+  }
+  .case-body h3{
+    margin-top:.75rem
+  }
+}
+
+/* ============ SERVICES ============ */
+.services{
+  border-bottom:1px solid var(--rule)
+}
+.service{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  gap:1rem 2rem;
+  padding:2rem 0;
+  border-top:1px solid var(--rule)
+}
+.service h3{
+  font-weight:380;
+  font-size:clamp(1.5rem,1.2rem + 1vw,2rem);
+  margin:0;
+  letter-spacing:-.01em
+}
+.service p{
+  margin:0 0 1rem;
+  color:var(--ink-soft);
+  max-width:50ch
+}
+.service ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-family:var(--sans);
+  font-size:.82rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem
+}
+.service li{
+  border:1px solid var(--rule);
+  padding:.22rem .65rem;
+  border-radius:2px;
+  color:var(--ink-soft)
+}
+@media (max-width:760px){
+  .service{
+    grid-template-columns:1fr
+  }
+}
+
+/* process: a real sequence, so it's numbered */
+.process-title{
+  font-weight:380;
+  font-size:1.5rem;
+  margin:clamp(3rem,6vw,4.5rem) 0 1.5rem
+}
+.process{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:2rem;
+  counter-reset:step;
+  padding:0;
+  margin:0
+}
+.process li{
+  list-style:none;
+  counter-increment:step;
+  border-top:1.5px solid var(--gold-line);
+  padding-top:1rem
+}
+.process li::before{
+  content:counter(step);
+  font-family:var(--sans);
+  font-size:.8rem;
+  color:var(--gold);
+  display:block;
+  margin-bottom:.4rem
+}
+.process h4{
+  font-weight:450;
+  font-size:1.2rem;
+  margin:0 0 .35rem
+}
+.process p{
+  margin:0;
+  font-size:.98rem;
+  color:var(--ink-soft)
+}
+@media (max-width:860px){
+  .process{
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+}
+@media (max-width:480px){
+  .process{
+    grid-template-columns:1fr
+  }
+}
+
+/* ============ ABOUT ============ */
+.about{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);
+  gap:clamp(2.5rem,6vw,6rem);
+  align-items:start
+}
+.portrait{
+  aspect-ratio:4/5;
+  margin:12px
+}
+.portrait img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.about h2{
+  font-weight:330;
+  font-size:clamp(2.2rem,1.4rem + 2.8vw,3.8rem);
+  line-height:1.04;
+  letter-spacing:-.025em;
+  margin:0 0 1.5rem
+}
+.statement{
+  font-size:clamp(1.2rem,1.05rem + .6vw,1.55rem);
+  line-height:1.5;
+  max-width:40ch;
+  margin:0 0 2.25rem;
+  font-weight:330
+}
+.facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.25rem 2rem;
+  font-family:var(--sans);
+  font-size:.9rem;
+  margin:0;
+  border-top:1px solid var(--rule);
+  padding-top:1.5rem
+}
+.facts dt{
+  color:var(--ink-faint);
+  margin-bottom:.15rem
+}
+.facts dd{
+  margin:0
+}
+@media (max-width:760px){
+  .about{
+    grid-template-columns:1fr
+  }
+  .portrait{
+    max-width:340px
+  }
+  .facts{
+    grid-template-columns:1fr
+  }
+}
+
+/* ============ CONTACT ============ */
+.contact h2{
+  font-weight:300;
+  font-size:clamp(2.7rem,1.6rem + 4.8vw,5.6rem);
+  line-height:1;
+  letter-spacing:-.03em;
+  margin:0 0 1.5rem;
+  max-width:15ch
+}
+.contact p{
+  color:var(--ink-soft);
+  max-width:48ch;
+  margin:0 0 2.25rem
+}
+.email{
+  font-size:clamp(1.3rem,1rem + 1.4vw,2.1rem);
+  text-decoration:none;
+  border-bottom:1.5px solid var(--gold);
+  padding-bottom:.1rem;
+  transition:color .2s
+}
+.email:hover{
+  color:var(--gold)
+}
+footer{
+  /* same surface as the header */
+  background:rgba(17,18,20,.75);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--rule);
+  padding:2rem 0;
+  font-family:var(--sans);
+  font-size:.8rem;
+  color:var(--ink-faint)
+}
+.foot{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem 2rem;
+  justify-content:space-between
+}
+.foot a{
+  color:var(--ink-soft);
+  margin-left:1.25rem
+}
+.foot a:hover{
+  color:var(--gold)
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion:reduce){
+  *{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important
+  }
+  /* show the end state of the load animation instead of an invisible drawing */
+  .dieline .cut{
+    stroke-dashoffset:0
+  }
+  .dieline .fold, .dieline .labels{
+    opacity:1
+  }
+  /* no scroll-scrubbing: the box is shown already assembled */
+  .fold{
+    height:auto
+  }
+  .fold-sticky{
+    position:relative;
+    height:auto;
+    padding:clamp(4rem,9vw,7rem) 0
+  }
+}
